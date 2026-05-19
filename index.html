@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Boyang Wang PhD in Accounting</title>
+<style>
+  :root {
+    --primary: #1a3a5c;
+    --accent: #2e7d9f;
+    --light: #f4f7fa;
+    --text: #2c2c2c;
+    --muted: #6b7280;
+    --border: #dde3ea;
+    --card-bg: #ffffff;
+    --tag-bg: #e8f0fe;
+    --tag-color: #1a3a5c;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: "Segoe UI", system-ui, -apple-system, sans-serif; color: var(--text); background: var(--light); line-height: 1.7; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  nav {
+    background: var(--primary);
+    position: sticky; top: 0; z-index: 100;
+    padding: 0 2rem;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 0.5rem;
+  }
+  nav .nav-brand { color: #fff; font-weight: 600; font-size: 1rem; padding: 1rem 0; }
+  nav ul { list-style: none; display: flex; gap: 1.2rem; flex-wrap: wrap; padding: 0.5rem 0; }
+  nav ul a { color: rgba(255,255,255,0.85); font-size: 0.88rem; }
+  nav ul a:hover { color: #fff; text-decoration: none; }
+
+  .hero {
+    background: linear-gradient(135deg, var(--primary) 0%, #2e5f8a 100%);
+    color: #fff; padding: 5rem 2rem 4rem;
+  }
+  .hero-inner {
+    max-width: 960px; margin: 0 auto;
+    display: flex; align-items: center; gap: 3rem; flex-wrap: wrap;
+  }
+  .hero-avatar {
+    width: 160px; height: 160px; border-radius: 50%;
+    object-fit: cover; object-position: top center;
+    border: 4px solid rgba(255,255,255,0.4); flex-shrink: 0;
+  }
+  .hero-text h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .hero-text .subtitle { font-size: 1.05rem; opacity: 0.9; margin-bottom: 0.2rem; }
+  .hero-text .location { font-size: 0.9rem; opacity: 0.75; margin-bottom: 1.2rem; }
+  .hero-links { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+  .hero-links a {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff; padding: 0.4rem 1rem;
+    border-radius: 20px; font-size: 0.85rem; transition: background 0.2s;
+  }
+  .hero-links a:hover { background: rgba(255,255,255,0.28); text-decoration: none; }
+  .hero-links a.cv-btn {
+    background: rgba(255,255,255,0.25);
+    border: 1px solid rgba(255,255,255,0.6);
+    font-weight: 600;
+  }
+
+  .container { max-width: 960px; margin: 0 auto; padding: 3rem 2rem; }
+  section { margin-bottom: 3rem; }
+  h2 {
+    font-size: 1.3rem; font-weight: 700; color: var(--primary);
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 0.4rem; margin-bottom: 1.5rem;
+    text-transform: uppercase; letter-spacing: 0.05em;
+  }
+
+  .about-text { font-size: 0.97rem; color: var(--text); max-width: 820px; }
+  .about-text .supervisors {
+    margin-top: 1rem; padding: 0.9rem 1.2rem;
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-left: 4px solid var(--accent); border-radius: 6px;
+    font-size: 0.9rem;
+  }
+  .about-text .supervisors strong { color: var(--primary); display: block; margin-bottom: 0.4rem; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  .about-text .supervisors ul { list-style: none; padding: 0; }
+  .about-text .supervisors ul li { margin-bottom: 0.2rem; }
+
+  .interests-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+  .interest-card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 8px; padding: 1rem 1.2rem;
+    border-left: 4px solid var(--accent); font-size: 0.9rem;
+  }
+  .interest-card strong { display: block; margin-bottom: 0.2rem; color: var(--primary); }
+
+  .paper-card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 8px; padding: 1.4rem 1.6rem; margin-bottom: 1.2rem;
+  }
+  .paper-card .paper-label {
+    display: inline-block; font-size: 0.75rem; font-weight: 700;
+    background: var(--tag-bg); color: var(--tag-color);
+    padding: 0.2rem 0.7rem; border-radius: 12px;
+    margin-bottom: 0.6rem; text-transform: uppercase; letter-spacing: 0.05em;
+  }
+  .paper-card .paper-label.mres { background: #e8f5e9; color: #2e7d32; }
+  .paper-card h3 { font-size: 1rem; font-weight: 700; color: var(--primary); margin-bottom: 0.3rem; }
+  .paper-card .paper-status { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.7rem; font-style: italic; }
+  .paper-card p { font-size: 0.9rem; color: #444; }
+
+  .conf-item {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 8px; padding: 1rem 1.4rem; margin-bottom: 0.9rem;
+    display: flex; gap: 1rem; align-items: flex-start;
+  }
+  .conf-date {
+    min-width: 90px; font-size: 0.82rem; color: #fff;
+    background: var(--accent); border-radius: 6px;
+    text-align: center; padding: 0.4rem 0.5rem;
+    font-weight: 600; line-height: 1.4; flex-shrink: 0;
+  }
+  .conf-detail h4 { font-size: 0.95rem; font-weight: 600; color: var(--primary); margin-bottom: 0.15rem; }
+  .conf-detail p { font-size: 0.87rem; color: var(--muted); }
+
+  .awards-list { list-style: none; padding: 0; }
+  .awards-list li {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--border);
+    display: flex; gap: 1rem; align-items: baseline;
+    font-size: 0.92rem;
+  }
+  .awards-list li:last-child { border-bottom: none; }
+  .award-year { min-width: 50px; color: var(--muted); font-size: 0.82rem; flex-shrink: 0; }
+  .award-name { font-weight: 600; color: var(--primary); }
+  .award-inst { color: var(--muted); font-size: 0.85rem; }
+
+  .edu-item { display: flex; gap: 1.2rem; margin-bottom: 1.5rem; }
+  .edu-year { min-width: 100px; font-size: 0.8rem; color: var(--muted); text-align: right; padding-top: 0.2rem; flex-shrink: 0; }
+  .edu-body h3 { font-size: 1rem; font-weight: 700; color: var(--primary); }
+  .edu-body .inst { font-size: 0.9rem; color: var(--accent); margin-bottom: 0.3rem; }
+  .edu-body ul { padding-left: 1.2rem; font-size: 0.88rem; color: #444; }
+  .edu-body ul li { margin-bottom: 0.2rem; }
+
+  .teach-item { margin-bottom: 1.2rem; }
+  .teach-item h3 { font-size: 0.98rem; font-weight: 700; color: var(--primary); }
+  .teach-item .teach-meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.4rem; }
+  .teach-item ul { padding-left: 1.2rem; font-size: 0.88rem; color: #444; }
+  .teach-item ul li { margin-bottom: 0.2rem; }
+
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1rem; }
+  .skill-group h4 { font-size: 0.85rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.5rem; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tag { background: var(--tag-bg); color: var(--tag-color); font-size: 0.78rem; padding: 0.25rem 0.7rem; border-radius: 12px; font-weight: 500; }
+
+  /* BLOG */
+  .blog-card {
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-radius: 8px; padding: 1.2rem 1.6rem; margin-bottom: 1.2rem;
+    display: flex; gap: 1.2rem; align-items: flex-start;
+  }
+  .blog-card .blog-date {
+    min-width: 80px; font-size: 0.8rem; color: var(--muted);
+    flex-shrink: 0; padding-top: 0.2rem; line-height: 1.5;
+  }
+  .blog-card .blog-body h4 { font-size: 0.98rem; font-weight: 700; color: var(--primary); margin-bottom: 0.2rem; }
+  .blog-card .blog-body .blog-source { font-size: 0.82rem; color: var(--accent); margin-bottom: 0.4rem; }
+  .blog-card .blog-body p { font-size: 0.88rem; color: #444; }
+
+  .contact-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; }
+  .contact-item { background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 1rem 1.2rem; font-size: 0.9rem; }
+  .contact-item .label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); margin-bottom: 0.3rem; }
+  .contact-item a { color: var(--text); font-weight: 500; }
+
+  footer { background: var(--primary); color: rgba(255,255,255,0.7); text-align: center; padding: 1.5rem; font-size: 0.82rem; }
+
+  @media (max-width: 600px) {
+    .hero-inner { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+    .hero-avatar { width: 120px; height: 120px; }
+    .hero-text h1 { font-size: 1.7rem; }
+    .edu-item { flex-direction: column; gap: 0.3rem; }
+    .edu-year { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-brand">Boyang Wang</span>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#papers">Papers</a></li>
+    <li><a href="#conferences">Conferences</a></li>
+    <li><a href="#awards">Awards</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#teaching">Teaching</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <img class="hero-avatar" src="avatar.jpg" alt="Boyang Wang">
+    <div class="hero-text">
+      <h1>Boyang Wang</h1>
+      <p class="subtitle">PhD Candidate in Accounting &middot; Essex Business School, University of Essex</p>
+      <p class="location">&#128205; Colchester, Essex, UK</p>
+      <div class="hero-links">
+        <a href="mailto:bw21582@essex.ac.uk">&#9993; bw21582@essex.ac.uk</a>
+        <a href="https://www.linkedin.com/in/-bw21582-wangb39108/" target="_blank">&#128101; LinkedIn</a>
+        <a href="https://www.essex.ac.uk/people/WANGB39108/Boyang-Wang" target="_blank">&#127760; Website</a>
+        <a class="cv-btn" href="CV.pdf" target="_blank" download>&#128196; Download CV</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2>About</h2>
+    <div class="about-text">
+      <p>I am a PhD Candidate in Accounting at Essex Business School, University of Essex, with a strong interest in the applications of Artificial Intelligence (AI) and Machine Learning (ML) in accounting and financial analysis. My research investigates how AI is transforming corporate disclosure practices, most notably through the concept of <strong>Algorithmic Disclosure Management</strong>, which explores whether corporate managers strategically adapt language to influence algorithmic readers such as LLMs. I also study AI-driven changes in financial reporting quality and NLP-based textual analysis of annual reports. I hold a First Class Honours BSc in Accounting and Finance from the University of Essex.</p>
+      <div class="supervisors">
+        <strong>Supervisors</strong>
+        <ul>
+          <li><a href="https://www.essex.ac.uk/people/LANHA92908/Hao-Lan" target="_blank">Dr. Hao Lan</a> — Essex Business School, University of Essex</li>
+          <li><a href="https://www.essex.ac.uk/people/AGYEI34303/Henry-Agyei-Boapeah" target="_blank">Prof. Henry Agyei-Boapeah</a> — Essex Business School, University of Essex</li>
+          <li><a href="https://research-portal.uea.ac.uk/en/persons/ricardo-malagueno-de-santana/" target="_blank">Dr. Ricardo Malagueno De Santana</a> — University of East Anglia (former)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESEARCH INTERESTS -->
+  <section id="research">
+    <h2>Research Interests</h2>
+    <div class="interests-grid">
+      <div class="interest-card"><strong>Algorithmic Disclosure</strong>How managers adapt language for AI/LLM readers</div>
+      <div class="interest-card"><strong>NLP &amp; Textual Analysis</strong>Large-scale analysis of corporate annual reports</div>
+      <div class="interest-card"><strong>AI in Financial Reporting</strong>AI-driven changes in disclosure quality and tone</div>
+      <div class="interest-card"><strong>Causal Inference</strong>Difference-in-Differences and panel econometrics</div>
+      <div class="interest-card"><strong>Emerging Markets</strong>Chinese A-listed firms and financial disclosure</div>
+    </div>
+  </section>
+
+  <!-- WORKING PAPERS -->
+  <section id="papers">
+    <h2>Working Papers</h2>
+
+    <div class="paper-card">
+      <span class="paper-label">WP1</span>
+      <h3>Writing for Machines: Algorithmic Accommodation in Corporate Disclosure</h3>
+      <p class="paper-status">In preparation</p>
+      <p>This paper investigates whether corporate managers strategically adapt disclosure language to influence algorithmic readers, particularly Large Language Models (LLMs) such as ChatGPT and DeepSeek. I introduce the concept of <em>Algorithmic Disclosure Management</em> and construct a novel <em>LLM-Targeting Score</em> that aggregates three measurable dimensions: structural prompt-like features, sentiment optimisation features, and embedding alignment with LLM-preferred prototypes.</p>
+    </div>
+
+    <div class="paper-card">
+      <span class="paper-label">WP2</span>
+      <h3>The Impact of Artificial Intelligence on Corporate Annual Report Disclosure: Evidence from Chinese A-Listed Firms</h3>
+      <p class="paper-status">Under preparation for submission, 2026</p>
+      <p>This paper examines how the widespread adoption of AI has transformed the textual characteristics of annual reports produced by Chinese listed companies. Using large-scale textual analysis of corporate disclosures, the study investigates structural shifts across four key dimensions: readability, similarity (cross-firm boilerplate homogeneity), forward-looking content, and tone. Findings contribute to the growing literature on AI-driven changes in corporate communication within an emerging-market context.</p>
+    </div>
+
+    <div class="paper-card">
+      <span class="paper-label mres">MRes Dissertation</span>
+      <h3>How do Religious Background and Political Affiliation Affect Firms' ESG Performance? A Quantitative Panel Study on the Case of the United States</h3>
+      <p class="paper-status">MRes Dissertation &middot; Essex Business School, University of Essex &middot; Supervised by Dr. Ricardo Malagueno De Santana &amp; Dr. Hao Lan</p>
+      <p>This dissertation examines how regional religiosity and political ideology jointly shape firm-level ESG performance in the United States, using a large-scale panel dataset of listed firms from 2012 to 2022. Grounded in institutional theory, the study finds that both higher religiosity and greater political conservatism independently suppress ESG scores, and that their interaction effects vary categorically across liberal and conservative states.</p>
+    </div>
+  </section>
+
+  <!-- CONFERENCES -->
+  <section id="conferences">
+    <h2>Conferences &amp; Presentations</h2>
+
+    <div class="conf-item">
+      <div class="conf-date">Jun 2026<br>Internal</div>
+      <div class="conf-detail">
+        <h4>Essex Business School PhD Research Conference</h4>
+        <p>University of Essex, Colchester, UK &middot; 18 June 2026</p>
+      </div>
+    </div>
+
+    <div class="conf-item">
+      <div class="conf-date">May 2026<br>Workshop</div>
+      <div class="conf-detail">
+        <h4>PhD Sustainability Workshop (BE983: EBS Integrated Programmes)</h4>
+        <p>University of Essex &middot; 12 May 2026<br>
+        <em>Presentation: How do religious background and political affiliation affect firms' ESG performance? A quantitative panel study on the case of the United States.</em></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- AWARDS -->
+  <section id="awards">
+    <h2>Honours &amp; Awards</h2>
+    <ul class="awards-list">
+      <li>
+        <span class="award-year">2022</span>
+        <span><span class="award-name">Dean&apos;s List</span> &nbsp;<span class="award-inst">University of Essex</span></span>
+      </li>
+      <li>
+        <span class="award-year">2021</span>
+        <span><span class="award-name">Academic Excellence Award (学业优异奖)</span> &nbsp;<span class="award-inst">Guangdong University of Foreign Studies</span></span>
+      </li>
+      <li>
+        <span class="award-year">2021</span>
+        <span><span class="award-name">Outstanding Student (三好学生标兵)</span> &nbsp;<span class="award-inst">Guangdong University of Foreign Studies</span></span>
+      </li>
+      <li>
+        <span class="award-year">2019</span>
+        <span><span class="award-name">Freshman Scholarship (新生奖学金)</span> &nbsp;<span class="award-inst">Guangdong University of Foreign Studies</span></span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <h2>Education</h2>
+
+    <div class="edu-item">
+      <div class="edu-year">2024 – 2029<br>(in progress)</div>
+      <div class="edu-body">
+        <h3>Doctor of Philosophy (PhD) — Accounting</h3>
+        <p class="inst">Essex Business School, University of Essex, Colchester, UK</p>
+        <ul>
+          <li>Research focus: Application of AI and ML in accounting and finance</li>
+          <li>Key themes: algorithmic accommodation in corporate disclosure, AI-driven changes in financial reporting, NLP-based textual analysis of annual reports</li>
+          <li>Advanced methods: stochastic processes, statistical inference, measure theory (real analysis), Difference-in-Differences causal inference</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-year">2021 – 2023</div>
+      <div class="edu-body">
+        <h3>BSc Accounting and Finance — First Class Honours</h3>
+        <p class="inst">University of Essex, Colchester, UK</p>
+        <ul>
+          <li>Core modules: Financial Reporting, Management Accounting, Corporate Finance, Auditing</li>
+          <li>Quantitative training: Calculus, Linear Algebra, Probability &amp; Mathematical Statistics, Mathematical Analysis</li>
+          <li>Graduated with First Class Honours &middot; Dean&apos;s List (2022)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-year">2019 – 2021</div>
+      <div class="edu-body">
+        <h3>Accounting and Finance (GPA: 3.8 / 4.0)</h3>
+        <p class="inst">Guangdong University of Foreign Studies, Guangzhou, China</p>
+        <ul>
+          <li>Deputy Director, Office of Academic Affairs, Student Union: organised guest lectures, research workshops, and student–faculty discussion panels</li>
+          <li>Awards: Freshman Scholarship (2019), Academic Excellence Award, Outstanding Student (三好学生标兵)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEACHING -->
+  <section id="teaching">
+    <h2>Teaching Experience</h2>
+    <div class="teach-item">
+      <h3>Undergraduate Teaching Support — Accounting Modules</h3>
+      <p class="teach-meta">Guangdong University of Foreign Studies, Guangzhou, China &middot; 2021 – 2023</p>
+      <ul>
+        <li>Provided in-class support for undergraduate modules including Fundamentals of Management Accounting and Statistics</li>
+        <li>Led structured revision sessions covering cost behaviour, budgeting, and variance analysis</li>
+        <li>Adapted explanations to varying levels of student understanding; comfortable with active learning and interactive seminar delivery</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <h2>Skills &amp; Tools</h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h4>Programming</h4>
+        <div class="skill-tags">
+          <span class="tag">Python</span><span class="tag">R</span><span class="tag">Stata</span><span class="tag">LaTeX</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Python Libraries</h4>
+        <div class="skill-tags">
+          <span class="tag">NLTK</span><span class="tag">HuggingFace</span><span class="tag">pandas</span><span class="tag">Transformers</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>LLMs &amp; NLP</h4>
+        <div class="skill-tags">
+          <span class="tag">LLaMA-3</span><span class="tag">DeepSeek R1</span><span class="tag">Mistral 7B</span><span class="tag">OpenAI API</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Econometrics</h4>
+        <div class="skill-tags">
+          <span class="tag">DiD</span><span class="tag">Panel Data</span><span class="tag">fixest</span><span class="tag">lfe</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Data Sources</h4>
+        <div class="skill-tags">
+          <span class="tag">EDGAR/SEC</span><span class="tag">Compustat</span><span class="tag">CRSP</span><span class="tag">I/B/E/S</span><span class="tag">CSMAR</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Languages</h4>
+        <div class="skill-tags">
+          <span class="tag">English (Fluent)</span><span class="tag">Mandarin (Native)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG & MEDIA -->
+  <section id="blog">
+    <h2>Blog &amp; Media</h2>
+    <div class="blog-card">
+      <div class="blog-date">19 May<br>2026</div>
+      <div class="blog-body">
+        <h4><a href="https://www.essex.ac.uk/blog/posts/2026/05/19/when-culture-shapes-corporate-sustainability" target="_blank">When Culture Shapes Corporate Sustainability</a></h4>
+        <p class="blog-source">University of Essex Official Blog</p>
+        <p>An accessible discussion of how regional culture — religiosity and political ideology — shapes corporate ESG performance in the United States, based on my MRes dissertation research.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="contact-grid">
+      <div class="contact-item">
+        <div class="label">Email</div>
+        <a href="mailto:bw21582@essex.ac.uk">bw21582@essex.ac.uk</a>
+      </div>
+      <div class="contact-item">
+        <div class="label">LinkedIn</div>
+        <a href="https://www.linkedin.com/in/-bw21582-wangb39108/" target="_blank">linkedin.com/in/-bw21582-wangb39108</a>
+      </div>
+      <div class="contact-item">
+        <div class="label">Affiliation</div>
+        <a href="https://www.essex.ac.uk/departments/essex-business-school" target="_blank">Essex Business School, University of Essex</a>
+      </div>
+      <div class="contact-item">
+        <div class="label">Location</div>
+        <span>Colchester, Essex, UK</span>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  &copy; 2026 Boyang Wang &middot; PhD Candidate in Accounting, University of Essex
+</footer>
+
+</body>
+</html>
